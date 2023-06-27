@@ -6,6 +6,9 @@ export class UsersService {
   constructor(private readonly usersRepo: UsersRepository) {}
 
   getUserById(userId: string) {
-    return userId;
+    return this.usersRepo.findUnique({
+      where: { id: userId },
+      select: { name: true, email: true },
+    });
   }
 }
